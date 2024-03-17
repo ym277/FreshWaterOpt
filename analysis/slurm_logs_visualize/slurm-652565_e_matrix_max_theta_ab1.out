@@ -1,0 +1,12 @@
+starting vis at Mon Mar 11 02:49:04 EDT 2024 on c0018
+Processing
+/home/fs01/ym277/miniconda3/envs/dam/bin/python
+python matrix_visualize.py max_theta 0.1
+Mode: max_theta
+Value: 0.1
+Traceback (most recent call last):
+  File "matrix_visualize.py", line 124, in <module>
+    main()
+  File "matrix_visualize.py", line 115, in main
+    with open(file_path, 'rb') as f:
+FileNotFoundError: [Errno 2] No such file or directory: 'results/max_theta_ab01.pkl'

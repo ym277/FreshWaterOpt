@@ -1,0 +1,8 @@
+starting vis at Mon Mar 11 02:49:07 EDT 2024 on c0017
+Processing
+/home/fs01/ym277/miniconda3/envs/dam/bin/python
+python matrix_visualize.py max_theta 0.4
+Mode: max_theta
+Value: 0.4
+(160584, 4908) (160584,)
+finish
