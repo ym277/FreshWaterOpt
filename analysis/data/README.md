@@ -3,7 +3,15 @@ This folder contains the basin data for all basin units and species and their in
 !! Be careful when you open .pkl files with 'wb'.
 Whenever you call open('xxx.pkl', 'wb'), it will wipe all the current data in the .pkl file immediately, even if you don't call pkl.dump().
 
-Can load them as:
+Note:
+Due to git file size limit, these files were not added to the git repo. You can just access them in the cluster and copy them to your local code base:
+/home/fs01/ym277/SouthAmerica/analysis/data/basins_gdf.pkl
+/home/fs01/ym277/SouthAmerica/analysis/data/data.pkl
+/home/fs01/ym277/SouthAmerica/analysis/data/existence_matrix.pkl
+/home/fs01/ym277/SouthAmerica/analysis/data/P.pkl
+You should have access to them in the cluster. If not just let me know. 
+
+The .pkl files can be loaded as:
 
 # this is the geodataframe of all basin units. Each line corresponds to a basin unit, containing its basic info and the species in it
 with open('basins_gdf.pkl', 'rb') as f:
