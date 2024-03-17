@@ -46,13 +46,6 @@ basin_totalscore = np.sum(P, axis=0) # basin id -> total score
 
 def solveLP_max_theta_with_areabound(area_bound):
     m = Model("max theta, fixed area bound")
-
-    # try:
-    #     num_threads = m.getAttr('Threads')
-    #     print(f"Gurobi is configured to use {num_threads} threads (cores).")
-    # except Exception as e:
-    #     print(f"Error retrieving the number of threads: {e}")
-
     vars = {}
     for i in range(num_basins):
         x = m.addVar(vtype=GRB.CONTINUOUS, name="x"+str(i))
@@ -60,16 +53,16 @@ def solveLP_max_theta_with_areabound(area_bound):
         m.addConstr(vars[i] >= (0 if i in non_protected_basins else 1), "c0_"+str(i))
         m.addConstr(vars[i] <= 1, "c1_"+str(i))
 
-    # area = sum(basins_info[i]['area'] * vars[i] for i in non_protected_basins)
-    # max_additional_area = area_bound * total_area - protected_area
-    # m.addConstr(area <= max_additional_area, name='c_area')
+    area = sum(basins_info[i]['area'] * vars[i] for i in non_protected_basins)
+    max_additional_area = area_bound * total_area - protected_area
+    m.addConstr(area <= max_additional_area, name='c_area')
         
-    area = sum(basins_info[i]['area'] * vars[i] for i in range(num_basins))
+    # alternative way
+    # area = sum(basins_info[i]['area'] * vars[i] for i in range(num_basins))
     # max_additional_area = area_bound * total_area - protected_area
-    m.addConstr(area <= area_bound * total_area, name='c_area')
+    # m.addConstr(area <= area_bound * total_area, name='c_area')
 
     theta = m.addVar(vtype=GRB.CONTINUOUS, name='theta')
-    # scores = []
     for j in range(num_species):
         score = sum(P[j][i] * vars[i] for i in range(num_basins))
         m.addConstr(score >= theta, 'theta_species_'+str(j))
@@ -146,7 +139,6 @@ def main():
         print("Usage: opt.py <mode> <value>")
         sys.exit(1)
 
-    # Now you can use mode and value in your script
     print("Mode:", mode)
     print("Value:", value)
 
@@ -165,8 +157,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-# with open('theta_01_max_totalscore.pkl', 'wb') as f:
-#     pkl.dump(sol_max_totalscore_theta_01, f)
-#     pkl.dump(max_totalscore_theta_01, f)

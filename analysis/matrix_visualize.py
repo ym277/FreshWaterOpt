@@ -47,7 +47,6 @@ def plot_e_matrix():
     plt.figure(figsize=(40, 20))
 
     sns.heatmap(sorted_e_matrix, cmap="Reds", cbar=False, xticklabels=False, yticklabels=False)
-    # sns.heatmap(existence_matrix, cmap="Reds", cbar=False, xticklabels=False, yticklabels=False)
     plt.title('Existence Matrix of Species in Basins')
     plt.xlabel('Basins')
     plt.ylabel('Species')
@@ -100,7 +99,6 @@ def main():
         print("Usage: matrix_visualize.py <mode> <value>")
         sys.exit(1)
 
-    # Now you can use mode and value in your script
     print("Mode:", mode)
     print("Value:", value)
 
